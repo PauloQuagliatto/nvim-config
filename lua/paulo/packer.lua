@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -14,10 +12,10 @@ return require('packer').startup(function(use)
   }
 
   use({
-	  'folke/tokyonight.nvim',
-	  as = 'tokyonight',
+	  'rmehri01/onenord.nvim',
+	  as = 'onenord',
 	  config = function() 
-		  vim.cmd('colorscheme tokyonight')
+		  vim.cmd('colorscheme onenord')
 	  end
   })
 
