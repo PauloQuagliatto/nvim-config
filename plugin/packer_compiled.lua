@@ -158,7 +158,7 @@ _G.packer_plugins = {
   onenord = {
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme onenord\bcmd\bvim\0" },
     loaded = true,
-    path = "/home/paulomq/.local/share/nvim/site/pack/packer/start/onenord",
+    path = "/home/paulothedev/.local/share/nvim/site/pack/packer/start/onenord",
     url = "https://github.com/rmehri01/onenord.nvim"
   },
   ["packer.nvim"] = {
