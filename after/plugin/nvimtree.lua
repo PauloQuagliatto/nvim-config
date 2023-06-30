@@ -1,3 +1,4 @@
+vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeToggle, opts)
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {

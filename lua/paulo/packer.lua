@@ -39,7 +39,7 @@ return require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
-  
+  use 'voldikss/vim-floaterm'
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  requires = {
