@@ -1,4 +1,6 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeToggle, opts)
+vim.opt.termguicolors = true
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -48,6 +50,9 @@ require("nvim-tree").setup({
         },
       },
     },
+  },
+  update_focused_file = {
+    enable = true,
   },
   filters = {
     dotfiles = false
