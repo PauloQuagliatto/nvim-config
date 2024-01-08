@@ -7,7 +7,6 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'tsserver',
     'eslint',
-    'eslint_d',
     'tailwindcss',
     'rust_analyzer',
     'lua_ls',
