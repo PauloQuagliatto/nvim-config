@@ -15,6 +15,13 @@ return {
       'j-hui/fidget.nvim',
     },
     config = function()
+      local cmp_lsp = require("cmp_nvim_lsp")
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        cmp_lsp.default_capabilities()
+      )
       require("fidget").setup()
       require('mason').setup()
       require('mason-lspconfig').setup({
@@ -27,21 +34,29 @@ return {
         },
         handlers = {
           function(server_name)
-            require("lspconfig")[server_name].setup {}
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities
+            })
           end,
           ["tsserver"] = function()
+            local lspconfig = require("lspconfig")
             vim.keymap.set("n", "<leader>of", function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.organizeImports",
                 arguments = { vim.api.nvim_buf_get_name(0) },
                 title = ""
               })
+            end)
+            vim.keymap.set("n", "<leader>fa", function()
               vim.cmd.EslintFixAll()
             end)
+            require("lspconfig")["tsserver"].setup({
+              capabilities = capabilities
+            })
           end,
           ["lua_ls"] = function()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup {
+            lspconfig.lua_ls.setup({
               settings = {
                 Lua = {
                   diagnostics = {
@@ -49,11 +64,11 @@ return {
                   }
                 }
               }
-            }
+            })
           end
         }
       })
-      local cmp = require 'cmp'
+      local cmp = require("cmp")
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
       cmp.setup({

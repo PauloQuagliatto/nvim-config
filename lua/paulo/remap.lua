@@ -40,10 +40,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>lsr", "<cmd>:LspRestart<CR>", { remap = true })
 
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("LspAttach", {
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(e)
+    vim.bo[e.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
     local opts = { buffer = e.buf }
     vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
