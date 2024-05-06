@@ -39,7 +39,6 @@ return {
             })
           end,
           ["tsserver"] = function()
-            local lspconfig = require("lspconfig")
             vim.keymap.set("n", "<leader>of", function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.organizeImports",
@@ -75,10 +74,7 @@ return {
         snippet = {
           -- REQUIRED - you must specify a snippet engine
           expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
           end,
         },
         mapping = cmp.mapping.preset.insert({
@@ -89,7 +85,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'luasnip' }, -- For luasnip users.
+          { name = 'luasnip' },
         }, {
           { name = 'buffer' },
         })
