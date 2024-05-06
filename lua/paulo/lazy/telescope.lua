@@ -8,10 +8,16 @@ return {
     },
 
     config = function()
-      require("telescope").setup({})
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = { "node_modules" },
+          -- wrap_results = true,
+          path_display = { shorten = 4 }
+        }
+      })
+
 
       local builtin = require('telescope.builtin')
-      defaults = { file_ignore_patterns = { "node_modules" } }
       vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
       vim.keymap.set('n', '<C-p>', builtin.git_files, {})
       vim.keymap.set("n", "<leader>pws", function()
