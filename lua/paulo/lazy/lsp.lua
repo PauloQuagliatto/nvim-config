@@ -91,6 +91,13 @@ return {
         })
       })
 
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" }
+        }
+      })
+
       vim.diagnostic.config({
         update_in_insert = true,
         float = {
