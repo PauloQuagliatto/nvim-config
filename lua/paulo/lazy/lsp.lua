@@ -4,7 +4,6 @@ return {
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'williamboman/mason.nvim',
-      "L3MON4D3/LuaSnip",
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -26,19 +25,20 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'tsserver',
+          'dockerls',
+          'docker_compose_language_service',
           'eslint',
-          'tailwindcss',
           'lua_ls',
+          'tailwindcss',
+          'tsserver',
           'zls'
         },
         handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({
+          ["tsserver"] = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.tsserver.setup({
               capabilities = capabilities
             })
-          end,
-          ["tsserver"] = function()
             vim.keymap.set("n", "<leader>of", function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.organizeImports",
@@ -49,9 +49,6 @@ return {
             vim.keymap.set("n", "<leader>fa", function()
               vim.cmd.EslintFixAll()
             end)
-            require("lspconfig")["tsserver"].setup({
-              capabilities = capabilities
-            })
           end,
           ["lua_ls"] = function()
             local lspconfig = require("lspconfig")
@@ -64,7 +61,12 @@ return {
                 }
               }
             })
-          end
+          end,
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities
+            })
+          end,
         }
       })
       local cmp = require("cmp")
