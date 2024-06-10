@@ -13,11 +13,11 @@ return {
       },
       {
         "[d",
-        "<cmd>Trouble diagnostics next<cr>",
+        "<cmd>Trouble diagnostics next skip_groups=true jump=true<cr>",
       },
       {
         "]d",
-        "<cmd>Trouble diagnostics prev<cr>",
+        "<cmd>Trouble diagnostics prev skip_groups=true jump=true<cr>",
       }
     }
   }
