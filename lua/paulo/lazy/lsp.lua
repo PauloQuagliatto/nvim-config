@@ -30,13 +30,13 @@ return {
           'eslint',
           'lua_ls',
           'tailwindcss',
-          'tsserver',
+          'ts_ls',
           'zls'
         },
         handlers = {
-          ["tsserver"] = function()
+          ["ts_ls"] = function()
             local lspconfig = require("lspconfig")
-            lspconfig.tsserver.setup({
+            lspconfig.ts_ls.setup({
               capabilities = capabilities
             })
             vim.keymap.set("n", "<leader>of", function()
