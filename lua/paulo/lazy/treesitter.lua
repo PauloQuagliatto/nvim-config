@@ -13,6 +13,7 @@ return {
           "query",
           "vim",
           "vimdoc",
+          "zig",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
